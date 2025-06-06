@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статья | Юньнань Тур - планируйте своё путешествие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Hero section styles */
+        .post-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imgs/ruitong-xie-uW9imaRg1h4-unsplash.jpg') no-repeat center center / cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .post-hero .hero-title {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: none;
+            -webkit-text-fill-color: white;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
+        }
+        
+        .post-hero .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .post-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #6c5ce7, #8e44ad);
+            color: white;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+        }
+        
+        /* Post content styles */
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .post-block {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .post-block h1 {
+            color: #1A2E4C;
+            margin-bottom: 20px;
+        }
+        
+        .post-block img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .post-block p {
+            color: #5a6f8e;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .likes {
+            color: #6c5ce7;
+            font-weight: 600;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .likes i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .post-meta {
+            display: flex;
+            margin-bottom: 20px;
+            color: #8294b1;
+            font-size: 0.9rem;
+        }
+        
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .post-meta i {
+            margin-right: 5px;
+            color: #6c5ce7;
+        }
+        
+        .comments {
+            margin-top: 30px;
+            border-top: 1px solid #e6e6e6;
+            padding-top: 20px;
+        }
+        
+        .comments h3 {
+            color: #1A2E4C;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .comments p {
+            background: #f9f9ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        #comment-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        #submit-comment {
+            background: linear-gradient(45deg, #6c5ce7, #8e44ad);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        #submit-comment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        #char-count {
+            font-size: 0.85rem;
+            color: #8294b1;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="xishuangbanna.html">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html">Журнал</a></li>
+                <li><a href="tickets.html">Билеты</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-badge" id="post-category">Журнал</div>
+            <h1 class="hero-title" id="post-hero-title">Статья</h1>
+            <p class="hero-subtitle" id="post-hero-subtitle">Подробности загружаются...</p>
+        </div>
+    </section>
+    
+    <div class="post-container">
+        <div id="post-content"></div>
+    </div>
+    
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#" class="scroll-to">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p>
+                <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="post.js"></script>
+</body>
+</html>

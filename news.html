@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журнал путешествий | Юньнань Тур - планируйте своё путешествие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        /* Стили для страницы новостей/журнала */
+        .news-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imgs/ruitong-xie-uW9imaRg1h4-unsplash.jpg') no-repeat center center / cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .news-hero .hero-title {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: none;
+            -webkit-text-fill-color: white;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .news-hero .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .news-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #6c5ce7, #8e44ad);
+            color: white;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+        }
+
+        .news-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .news-intro {
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-date {
+            font-size: 0.85rem;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .article-date i {
+            margin-right: 6px;
+            color: #6c5ce7;
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            color: #1A2E4C;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .article-excerpt {
+            color: #5a6f8e;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .article-tag {
+            background: #f5f5ff;
+            color: #6c5ce7;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .article-link {
+            color: #6c5ce7;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .article-link i {
+            margin-left: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .article-link:hover i {
+            transform: translateX(3px);
+        }
+
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: linear-gradient(to right, #f9f9ff, #f5f5ff);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .featured-article-image {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-article-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #6c5ce7, #8e44ad);
+            color: white;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+
+        .featured-article-title {
+            font-size: 1.8rem;
+            color: #1A2E4C;
+            margin-bottom: 15px;
+        }
+
+        .featured-article-excerpt {
+            color: #5a6f8e;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .newsletter-section {
+            background: linear-gradient(45deg, #6c5ce7, #8e44ad);
+            border-radius: 12px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-description {
+            max-width: 700px;
+            margin: 0 auto 20px;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            background: #1A2E4C;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #0f1c2f;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .pagination-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: #1A2E4C;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .pagination-link:hover,
+        .pagination-link.active {
+            background: #6c5ce7;
+            color: white;
+        }
+
+        @media (max-width: 992px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article-content {
+                padding: 25px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-button {
+                border-radius: 30px;
+            }
+        }
+
+        /* Дополнительные стили для новостей */
+        #news-container {
+            margin-top: 10px;
+        }
+        
+        #news-container .article-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #news-container .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        #news-container .article-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        #news-container .article-excerpt {
+            flex-grow: 1;
+        }
+        
+        #news-container .article-link {
+            margin-top: auto;
+        }
+        
+        /* Конец дополнительных стилей */
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="xishuangbanna.html">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html" class="active">Журнал</a></li>
+                <li><a href="tickets.html">Билеты</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="news-hero">
+        <div class="container">
+            <div class="news-badge">Журнал путешествий</div>
+            <h1 class="hero-title">Истории и советы о Юньнани</h1>
+            <p class="hero-subtitle">Вдохновляющие статьи, полезные советы и интересные факты о путешествиях по Юньнани</p>
+        </div>
+    </section>
+
+    <div class="news-content">
+        <div class="news-intro">
+            <h2 class="section-title">Наш журнал путешествий</h2>
+            <p>Здесь мы собираем самые интересные статьи, полезные советы, личные истории путешественников и актуальные новости о провинции Юньнань. Открывайте для себя новые места и планируйте свои приключения вместе с нами!</p>
+        </div>
+
+        <div class="featured-article">
+            <img src="imgs/颂赞林寺.jpg" alt="Традиционный фестиваль в Юньнани" class="featured-article-image">
+            <div class="featured-article-content">
+                <div class="featured-badge">Путевые заметки</div>
+                <div class="article-date"><i class="far fa-calendar-alt"></i> 15 июня 2024</div>
+                <h3 class="featured-article-title">Неизведанные тропы Шангри-Ла: путешествие к священным горам</h3>
+                <p class="featured-article-excerpt">За последний месяц наша команда провела две недели, исследуя удаленные горные деревни региона Шангри-Ла. Мы встретились с местными жителями, попробовали традиционную тибетскую кухню и обнаружили несколько маршрутов, о которых редко пишут в путеводителях...</p>
+                <div class="article-tags">
+                    <span class="article-tag">Шангри-Ла</span>
+                    <span class="article-tag">Треккинг</span>
+                    <span class="article-tag">Культура</span>
+                </div>
+                <a href="post.html?id=#" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <h3 class="section-title">Горячие рекомендации</h3>
+        <div class="article-grid">
+            <div class="article-card">
+                <img src="imgs/1.2.png" alt="Карнавал воды в Сишуанбаньна" class="article-image">
+                <div class="article-content">
+                    <div class="article-date"><i class="far fa-calendar-alt"></i> 10 июня 2024</div>
+                    <h3 class="article-title">Набор фотографий, чтобы научить вас, как снимать цветы, чтобы они хорошо смотрелись</h3>
+                    <p class="article-excerpt">Юньнань весной - хорошее место для походов и наслаждения цветами, рапсовыми цветами, чайными цветами, цветущей вишней, азалиями ...... Каждый взгляд радует сердце....</p>
+                    <div class="article-tags">
+                        <span class="article-tag">цветок</span>
+                        <span class="article-tag">фотография</span>
+                    </div>
+                    <a href="post.html?id=1" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+
+            <div class="article-card">
+                <img src="imgs/3.1.png" alt="Чайные плантации" class="article-image">
+                <div class="article-content">
+                    <div class="article-date"><i class="far fa-calendar-alt"></i> 1 июня 2024</div>
+                    <h3 class="article-title">Фестиваль обливания водой Сишуанбаньна</h3>
+                    <p class="article-excerpt">Каждый год 13 апреля в Сишуанбаньне проходит ежегодный Фестиваль обливания водой, который являет...</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Фестиваль брызг воды</span>
+                        <span class="article-tag">Культура</span>
+                    </div>
+                    <a href="post.html?id=3" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="imgs/5.3.png" alt="Старый город Лицзян" class="article-image">
+                <div class="article-content">
+                    <div class="article-date"><i class="far fa-calendar-alt"></i> 5 июня 2024</div>
+                    <h3 class="article-title">Фестиваль костюмов народа И</h3>
+                    <p class="article-excerpt">Онлайн-фестиваль костюмов полон волнения. Торжественное открытие фестиваля национального костюма «Облака Шелкового пути. Красочные облака Юньнаня 2025» и «Фестиваля облачных костюмов» Китая «Юнжэнь Чжицзюй И» состоялось по всей сети 11 февраля 2025 года! «Встреча Нового года с нематериальным культурным наследием и привнесение культуры в тысячи домов» — одно из мероприятий, направленных на сохранение традиционных навыков китайской нации и демонстрацию богатого и уникального нематериального культурного наследия Юнжэня. «Видеосерия конкурса национальных костюмов Юнжэнь Чжицзю И» будет транслироваться во...</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Лицзян</span>
+                        <span class="article-tag">История</span>
+                        <span class="article-tag">Архитектура</span>
+                    </div>
+                    <a href="post.html?id=#" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="imgs/3.2.png" alt="Рисовые террасы Юаньян" class="article-image">
+                <div class="article-content">
+                    <div class="article-date"><i class="far fa-calendar-alt"></i> 25 мая 2024</div>
+                    <h3 class="article-title">Фотогид по рисовым террасам Юаньян</h3>
+                    <p class="article-excerpt">Рисовые террасы Юаньян — одно из самых фотогеничных мест в Китае. Мы подготовили советы по фотосъемке и рассказали, когда лучше всего посещать это место...</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Фотография</span>
+                        <span class="article-tag">Юаньян</span>
+                    </div>
+                    <a href="post.html?id=#" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <img src="imgs/1.3.png" alt="Фестиваль в Дали" class="article-image">
+                <div class="article-content">
+                    <div class="article-date"><i class="far fa-calendar-alt"></i> 20 мая 2024</div>
+                    <h3 class="article-title">Календарь фестивалей Юньнани на 2024 год</h3>
+                    <p class="article-excerpt">В Юньнани проводится множество красочных фестивалей и праздников. Мы составили календарь самых интересных событий, которые стоит посетить в этом году...</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Фестивали</span>
+                        <span class="article-tag">События</span>
+                        <span class="article-tag">Традиции</span>
+                    </div>
+                    <a href="post.html?id=#" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <img src="imgs/苍山照片.jpg" alt="Горный треккинг" class="article-image">
+                <div class="article-content">
+                    <div class="article-date"><i class="far fa-calendar-alt"></i> 15 мая 2024</div>
+                    <h3 class="article-title">5 лучших пешеходных маршрутов в горах Цаншань</h3>
+                    <p class="article-excerpt">Горы Цаншань рядом с Дали предлагают множество треккинговых маршрутов различной сложности. Мы отобрали 5 лучших трекинг-маршрутов с потрясающими видами и интересными достопримечательностями...</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Треккинг</span>
+                        <span class="article-tag">Дали</span>
+                        <span class="article-tag">Горы</span>
+                    </div>
+                    <a href="post.html?id=#" class="article-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Раздел для динамических статей из news.js -->
+        <h3 class="section-title">Актуальные новости</h3>
+        <div id="news-container" class="article-grid">
+            <!-- Здесь будут отображаться новости из news.js -->
+        </div>
+
+        <div class="pagination">
+            <a href="#" class="pagination-link active">1</a>
+            <a href="#" class="pagination-link">2</a>
+            <a href="#" class="pagination-link">3</a>
+            <a href="#" class="pagination-link"><i class="fas fa-chevron-right"></i></a>
+        </div>
+
+        <div class="newsletter-section">
+            <h3 class="newsletter-title">Подпишитесь на наш журнал</h3>
+            <p class="newsletter-description">Получайте самые интересные статьи, новости о фестивалях и событиях, а также эксклюзивные предложения для подписчиков</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Ваш e-mail" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">Подписаться</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#" class="scroll-to">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p>
+                <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="js/script.js"></script>
+    <script src="news.js"></script>
+</body>
+</html>

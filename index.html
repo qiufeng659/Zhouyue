@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юньнань Тур: Откройте для себя магию неизведанного Китая!</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <header class="main-header"> <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="xishuangbanna.html">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html">Журнал</a></li> <li><a href="tickets.html">Билеты</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <img src="imgs/ruitong-xie-uW9imaRg1h4-unsplash.jpg" alt="Юньнань пейзаж" class="hero-background">
+        <div class="container hero-content-container">
+            <div class="hero-badge">Откройте для себя</div>
+            <h1 class="hero-title">Юньнань: где природа встречается с вечностью</h1>
+            <p class="hero-subtitle">Откройте для себя провинцию тысячи пейзажей: от снежных вершин до тропических лесов, от древних городов до самобытной культуры 25 народов.</p>
+            <a href="#tour-finder-form" class="btn btn-hero scroll-to">Подобрать ваш идеальный тур <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section class="usp-section section-padding"> <div class="container">
+            <h2 class="section-title">Почему Юньнань – это ваше следующее открытие?</h2>
+            <div class="usp-grid">
+                <div class="usp-item">
+                    <div class="usp-icon-wrapper"><i class="fas fa-leaf"></i></div> <h3>Первозданная природа без границ</h3>
+                    <p>Исследуйте мистические горы, зеркальные озера и каньоны Янцзы. Здесь каждый рассвет – произведение искусства.</p>
+                </div>
+                <div class="usp-item">
+                    <div class="usp-icon-wrapper"><i class="fas fa-landmark"></i></div>
+                    <h3>Калейдоскоп древних культур</h3>
+                    <p>Познакомьтесь с уникальными традициями 25 народов, станьте частью ярких фестивалей и откройте для себя тайны древних ремесел.</p>
+                </div>
+                <div class="usp-item">
+                    <div class="usp-icon-wrapper"><i class="fas fa-utensils"></i></div>
+                    <h3>Гастрономическое приключение</h3>
+                    <p>Откройте для себя взрыв вкусов юньнаньской кухни – от знаменитого чая Пуэр до экзотических грибов и пикантной лапши "через мост".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="destinations-preview-section section-padding background-alt"> <div class="container">
+            <h2 class="section-title">Жемчужины Юньнани: выберите свое направление</h2>
+            <div class="destinations-grid">
+                <a href="lijian.html" class="destination-card">
+                    <img src="imgs/丽江古城.jpg" alt="Древний город Лицзян" class="destination-img">
+                    <div class="destination-info">
+                        <h3>Лицзян</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.8</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="dali.html" class="destination-card">
+                    <img src="imgs/苍山照片.jpg" alt="Озеро Эрхай, Дали" class="destination-img">
+                    <div class="destination-info">
+                        <h3>Дали</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> <span>4.5</span>
+                        </div>
+                    </div>
+                </a>
+                 <a href="xishuangbanna.html" class="destination-card">
+                    <img src="imgs/原始森林.jpg" alt="Тропический лес Сишуанбаньна" class="destination-img">
+                    <div class="destination-info">
+                        <h3>Сишуанбаньна</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i> <span>4.7</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="shangrila.html" class="destination-card">
+                    <img src="imgs/普达措.jpg" alt="Монастырь Шангри-Ла" class="destination-img">
+                    <div class="destination-info">
+                        <h3>Шангри-Ла</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tour-finder-form" class="tour-finder-section section-padding"> 
+        <div class="container">
+            <h2 class="section-title">Не знаете с чего начать? <br>Мы поможем спланировать путешествие мечты!</h2>
+            <div class="tour-finder-card">
+                <div class="tour-finder-decoration">
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-circle"></div>
+                </div>
+                <form class="tour-finder-form">
+                    <div class="form-group">
+                        <label for="destination-select"><i class="fas fa-map-signs"></i> Куда хотите отправиться?</label>
+                        <select id="destination-select" name="destination">
+                            <option value="">Все уголки Юньнани</option>
+                            <option value="lijian">Лицзян – магия древности</option>
+                            <option value="dali">Дали – озерная безмятежность</option>
+                            <option value="xishuangbanna">Сишуанбаньна – тропический рай</option>
+                            <option value="shangrila">Шангри-Ла – мистические высоты</option>
+                            <option value="kunming">Куньмин – город вечной весны</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration-select"><i class="far fa-clock"></i> На сколько дней?</label>
+                        <select id="duration-select" name="duration">
+                            <option value="">Любая продолжительность</option>
+                            <option value="3-5">Экспресс-знакомство (3-5 дней)</option>
+                            <option value="6-9">Полное погружение (6-9 дней)</option>
+                            <option value="10+">Большое приключение (10+ дней)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-select"><i class="fas fa-hiking"></i> Что вас вдохновляет?</label>
+                        <select id="interest-select" name="interests">
+                            <option value="">Хочу всего понемногу!</option>
+                            <option value="nature">Природа и захватывающие пейзажи</option>
+                            <option value="culture">Культура, история и фестивали</option>
+                            <option value="adventure">Активный отдых и треккинг</option>
+                            <option value="food">Гастрономические открытия</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-form">Подобрать тур <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section section-padding background-alt">
+        <div class="container">
+            <h2 class="section-title">Эмоции, которые остаются навсегда</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-card-inner">
+                        <img src="https://source.unsplash.com/random/100x100?woman,happy,traveler" alt="Анна В." class="testimonial-avatar">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Юньнань превзошла все ожидания! Это было сказочное путешествие, идеально спланированное. Лицзян покорил сердце. Огромное спасибо за это волшебство!"</p>
+                        <h4 class="testimonial-author">- Анна В., Москва</h4>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card-inner">
+                        <img src="https://source.unsplash.com/random/100x100?man,adventure,asia" alt="Михаил П." class="testimonial-avatar">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text">"Мечтал о Шангри-Ла, и это было что-то невероятное. Природа, монастыри, атмосфера... Отдельная благодарность нашему гиду – настоящий профессионал!"</p>
+                        <h4 class="testimonial-author">- Михаил П., Санкт-Петербург</h4>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card-inner">
+                        <img src="https://source.unsplash.com/random/100x100?couple,travel,asia" alt="Ольга и Дмитрий С." class="testimonial-avatar">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Сишуанбаньна – это просто тропический восторг! Слоны, джунгли, чайные плантации и улыбчивые местные жители. Мы влюбились и обязательно вернемся!"</p>
+                        <h4 class="testimonial-author">- Ольга и Дмитрий С., Екатеринбург</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-stories-section section-padding">
+        <div class="container">
+            <h2 class="section-title">Вдохновение из нашего журнала путешествий</h2>
+            <div class="stories-container">
+                <div class="stories-grid">
+                    <article class="story-card">
+                        <a href="post.html?id=1" class="story-link">
+                            <div class="story-image" style="background-image: url('../image/imgs/1.1.png');"></div>
+                            <div class="story-info">
+                                <span class="story-category">Фотогид</span>
+                                <h3>Весенний Дали: секреты идеальных цветочных кадров</h3>
+                                <p>Юньнань весной – это буйство красок! Делимся советами, как поймать магию цветения...</p>
+                                <div class="story-meta">
+                                    <span class="story-date"><i class="far fa-calendar-alt"></i> 10 мая 2024</span>
+                                    <span class="story-read-more">Читать далее <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="story-card">
+                        <a href="post.html?id=2" class="story-link">
+                            <div class="story-image" style="background-image: url('../image/imgs/2.1.png');"></div>
+                            <div class="story-info">
+                                <span class="story-category">Культура</span>
+                                <h3>Фестиваль костюмов народа И: ожившее наследие</h3>
+                                <p>Погрузитесь в уникальные традиции одного из древнейших и красочных праздников...</p>
+                                <div class="story-meta">
+                                    <span class="story-date"><i class="far fa-calendar-alt"></i> 2 мая 2024</span>
+                                    <span class="story-read-more">Читать далее <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="story-card">
+                        <a href="post.html?id=3" class="story-link">
+                            <div class="story-image" style="background-image: url('../image/imgs/3.1.png');"></div>
+                            <div class="story-info">
+                                <span class="story-category">События</span>
+                                <h3>Праздник воды в Сишуанбаньне: дайское веселье!</h3>
+                                <p>Узнайте о самом освежающем и жизнерадостном фестивале, символизирующем очищение...</p>
+                                <div class="story-meta">
+                                    <span class="story-date"><i class="far fa-calendar-alt"></i> 25 апреля 2024</span>
+                                    <span class="story-read-more">Читать далее <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+                <div class="section-cta">
+                    <a href="news.html" class="btn btn-outline">Больше историй в журнале <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq-section" class="faq-section section-padding background-alt">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы о Юньнани</h2>
+            <div class="faq-container">
+                <div class="faq-decoration-circle faq-decoration-1"></div>
+                <div class="faq-decoration-circle faq-decoration-2"></div>
+                
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <div class="faq-question-content">
+                                <div class="faq-icon"><i class="fas fa-passport"></i></div>
+                                <span>Нужна ли виза россиянам для поездки в Юньнань?</span>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i><i class="fas fa-minus"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Да, для туристической поездки в материковый Китай, включая провинцию Юньнань, гражданам России требуется виза. Рекомендуем обращаться в консульство КНР или аккредитованный визовый центр заблаговременно.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <div class="faq-question-content">
+                                <div class="faq-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <span>Какое время года лучше всего подходит для путешествия?</span>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i><i class="fas fa-minus"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Юньнань прекрасна круглый год! Весна (март-май) и осень (сентябрь-ноябрь) предлагают самую комфортную погоду. Зимой можно насладиться снежными пейзажами на севере, а летом – спастись от зноя в горах или исследовать тропики.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <div class="faq-question-content">
+                                <div class="faq-icon"><i class="fas fa-shield-alt"></i></div>
+                                <span>Насколько безопасно путешествовать по провинции?</span>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i><i class="fas fa-minus"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Юньнань – один из самых безопасных регионов Китая. Местные жители гостеприимны, а туристическая инфраструктура хорошо развита. Соблюдайте обычные меры предосторожности, и ваше путешествие будет комфортным.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <div class="faq-question-content">
+                                <div class="faq-icon"><i class="fas fa-credit-card"></i></div>
+                                <span>Какие способы оплаты здесь популярны?</span>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i><i class="fas fa-minus"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer">
+                            <p>В Китае доминируют мобильные платежи (Alipay, WeChat Pay). Международные карты принимаются в крупных отелях и магазинах. Рекомендуется иметь и некоторое количество наличных юаней.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-contact">
+                    <div class="faq-contact-content">
+                        <h3>Не нашли ответ на свой вопрос?</h3>
+                        <p>Свяжитесь с нами напрямую, и мы с радостью поможем вам спланировать идеальное путешествие!</p>
+                        <a href="mailto:info@yunnan-adventure.cn" class="btn btn-primary">Задать вопрос <i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="main-footer"> <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#faq-section" class="scroll-to">FAQ</a></li>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p> <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

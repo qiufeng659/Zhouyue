@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта маршрутов | Юньнань Тур - планируйте своё путешествие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css.css">
+    <style>
+        /* Стили для страницы карты */
+        .map-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imgs/ruitong-xie-uW9imaRg1h4-unsplash.jpg') no-repeat center center / cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .map-hero .hero-title {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: none;
+            -webkit-text-fill-color: white;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .map-hero .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .map-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #16a085, #2ecc71);
+            color: white;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+        }
+
+        .map-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .map-intro {
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .map-legend {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .map-legend h3 {
+            color: #1A2E4C;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .color-xishuangbanna {
+            background-color: #e74c3c;
+        }
+
+        .color-dali {
+            background-color: #3498db;
+        }
+
+        .color-lijiang {
+            background-color: #e67e22;
+        }
+
+        .color-shangrila {
+            background-color: #9b59b6;
+        }
+
+        .legend-text {
+            color: #5a6f8e;
+            font-size: 0.95rem;
+        }
+        
+        .map-tips {
+            background-color: #f9f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #16a085;
+        }
+        
+        .map-tips h3 {
+            color: #1A2E4C;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .map-tips ul {
+            padding-left: 20px;
+        }
+        
+        .map-tips li {
+            color: #5a6f8e;
+            margin-bottom: 8px;
+        }
+        
+        .map-tips i {
+            color: #16a085;
+            margin-right: 8px;
+        }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 768px) {
+            #map {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="xishuangbanna.html">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html" class="active">Карта</a></li>
+                <li><a href="news.html">Журнал</a></li>
+                <li><a href="tickets.html">Билеты</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="map-hero">
+        <div class="container">
+            <div class="map-badge">Интерактивная карта</div>
+            <h1 class="hero-title">Карта маршрутов</h1>
+            <p class="hero-subtitle">Исследуйте все ключевые достопримечательности провинции Юньнань и планируйте своё идеальное путешествие</p>
+        </div>
+    </section>
+
+    <div class="map-content">
+        <div class="map-intro">
+            <h2 class="section-title">Интерактивная карта Юньнани</h2>
+            <p>На этой карте отмечены все основные достопримечательности и туристические маршруты по провинции Юньнань. Используйте карту для планирования своего путешествия и оценки расстояний между объектами.</p>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="map-legend">
+            <h3>Условные обозначения</h3>
+            <div class="legend-item">
+                <div class="legend-color color-xishuangbanna"></div>
+                <div class="legend-text">Достопримечательности Сишуанбаньна</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-dali"></div>
+                <div class="legend-text">Достопримечательности Дали</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-lijiang"></div>
+                <div class="legend-text">Достопримечательности Лицзяна</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-shangrila"></div>
+                <div class="legend-text">Достопримечательности Шангри-Ла</div>
+            </div>
+        </div>
+
+        <div class="map-tips">
+            <h3>Полезные советы</h3>
+            <ul>
+                <li><i class="fas fa-search-plus"></i> Используйте колесо мыши для масштабирования карты</li>
+                <li><i class="fas fa-hand-pointer"></i> Нажмите на маркер, чтобы узнать название достопримечательности</li>
+                <li><i class="fas fa-arrows-alt"></i> Перетаскивайте карту, чтобы перемещаться по ней</li>
+                <li><i class="fas fa-clock"></i> Обратите внимание на расстояния между объектами при планировании маршрута</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#" class="scroll-to">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p>
+                <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="map.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+

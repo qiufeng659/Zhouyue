@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сишуанбаньна | Юньнань Тур - тропический рай Китая</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        /* Стили, специфичные для страницы Сишуанбаньна */
+        .destination-hero {
+            min-height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imgs/Yexainggu.jpeg') no-repeat center center / cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .destination-hero .hero-title {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: none;
+            -webkit-text-fill-color: white;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .destination-hero .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .destination-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #57b846, #7ed56f);
+            color: white;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(87, 184, 70, 0.3);
+        }
+
+        .destination-content {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .destination-intro {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .destination-intro-text {
+            flex: 1;
+        }
+
+        .destination-intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .destination-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .destination-intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .attraction-image-container {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .attraction-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .attraction-card:hover .attraction-image {
+            transform: scale(1.1);
+        }
+
+        .attraction-content {
+            padding: 20px;
+        }
+
+        .attraction-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1A2E4C;
+        }
+
+        .attraction-description {
+            font-size: 0.95rem;
+            color: #5a6f8e;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .attraction-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #57b846, #7ed56f);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(87, 184, 70, 0.2);
+        }
+
+        .attraction-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(87, 184, 70, 0.3);
+            color: white;
+        }
+
+        .attraction-details {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #8294b1;
+            margin-bottom: 15px;
+        }
+
+        .attraction-details i {
+            margin-right: 5px;
+            color: #57b846;
+        }
+
+        .attraction-details span {
+            margin-right: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .destination-intro {
+                flex-direction: column;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Стили для секции планирования путешествия */
+        .section-padding.background-alt {
+            background-color: #f4f4ff;
+        }
+
+        .section-padding.background-alt .section-title {
+            color: #1A2E4C;
+        }
+
+        .section-padding.background-alt .tour-finder-card {
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+
+        .section-padding.background-alt .form-group label {
+            color: #1A2E4C;
+        }
+
+        .section-padding.background-alt .form-group label i {
+            color: #57b846;
+        }
+
+        .section-padding.background-alt .form-group select {
+            color: #1A2E4C;
+            background-color: white;
+            border: 1px solid rgba(26, 46, 76, 0.2);
+        }
+
+        .section-padding.background-alt .form-group select option {
+            color: #1A2E4C;
+            background-color: white;
+        }
+
+        .section-padding.background-alt .btn.btn-primary.btn-form {
+            background: linear-gradient(90deg, #57b846, #7ed56f);
+            color: white;
+        }
+
+        .section-padding.background-alt .btn.btn-primary.btn-form:hover {
+            background: linear-gradient(90deg, #4ca83e, #6bc85d);
+        }
+
+        .section-padding.background-alt .decoration-circle:first-child {
+            background: linear-gradient(135deg, rgba(87, 184, 70, 0.1) 0%, rgba(87, 184, 70, 0) 70%);
+        }
+
+        .section-padding.background-alt .decoration-circle:last-child {
+            background: linear-gradient(135deg, rgba(126, 213, 111, 0.1) 0%, rgba(126, 213, 111, 0) 70%);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="xishuangbanna.html" class="active">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html">Журнал</a></li>
+                <li><a href="tickets.html">Билеты</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="destination-hero">
+        <div class="container">
+            <div class="destination-badge">Тропический рай</div>
+            <h1 class="hero-title">Сишуанбаньна</h1>
+            <p class="hero-subtitle">Откройте для себя уникальный уголок на юге Юньнани, где тропические джунгли, экзотические животные и самобытная культура народа дай создают неповторимый колорит</p>
+        </div>
+    </section>
+
+    <div class="destination-content">
+        <div class="destination-intro">
+            <div class="destination-intro-text">
+                <h2 class="section-title">Добро пожаловать в Сишуанбаньна</h2>
+                <p>Сишуанбаньна – это тропический рай на юге провинции Юньнань, граничащий с Мьянмой и Лаосом. Здесь вы окунетесь в атмосферу джунглей, встретите диких слонов, познакомитесь с самобытной культурой народа дай и побываете на экзотических фестивалях.</p>
+                <p>Регион славится своим богатым биоразнообразием, тропическими лесами, чайными плантациями и яркими традициями местных народов. Посетите Сишуанбаньна, чтобы увидеть другую, экзотическую сторону Китая.</p>
+            </div>
+            <div class="destination-intro-image">
+                <img src="imgs/傣族园.jpg" alt="Культура народа дай в Сишуанбаньна">
+            </div>
+        </div>
+
+        <h2 class="section-title">Главные достопримечательности</h2>
+        <div class="attractions-grid">
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/Yexainggu.jpeg" alt="Долина диких слонов" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Долина диких слонов</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>Цзиншун</span>
+                        <i class="fas fa-clock"></i><span>Рекомендуемое время: 3-4 часа</span>
+                    </div>
+                    <p class="attraction-description">Долина диких слонов - одна из самых известных достопримечательностей Сишуанбаньны, где можно вблизи понаблюдать за азиатскими дикими слонами в их естественной среде обитания.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/20230909239181.html" class="attraction-btn">Купить билет <i class="fas fa-ticket-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/傣族园.jpg" alt="Дайский сад" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Дайский сад</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>Цзингун</span>
+                        <i class="fas fa-clock"></i><span>Рекомендуемое время: 4-5 часов</span>
+                    </div>
+                    <p class="attraction-description">Здесь демонстрируется традиционная культура народа дай, включая Фестиваль водных фонарей, Фестиваль водных брызг и другие специальные мероприятия.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/2019061173592.html" class="attraction-btn">Купить билет <i class="fas fa-ticket-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/植物园.jpg" alt="Ботанический сад CAS" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Ботанический сад CAS</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>Мэнла</span>
+                        <i class="fas fa-clock"></i><span>Рекомендуемое время: 3-4 часа</span>
+                    </div>
+                    <p class="attraction-description">Ботанический сад Сишуанбаньна Чжунке - крупнейшая в Китае база по изучению и демонстрации тропических растений, где представлено богатое разнообразие тропической флоры.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/2019051671382.html" class="attraction-btn">Купить билет <i class="fas fa-ticket-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/曼听公园.jpg" alt="Парк Мантин" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Парк Мантин</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>Цзинхун</span>
+                        <i class="fas fa-clock"></i><span>Рекомендуемое время: 2-3 часа</span>
+                    </div>
+                    <p class="attraction-description">Старейший парк Сишуанбаньна, сочетающий в себе пышную тропическую растительность и элементы буддийской культуры народа дай, включая древний храм.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/2019061073431.html" class="attraction-btn">Купить билет <i class="fas fa-ticket-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/星光夜市.jpg" alt="Звездный ночной рынок" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Звездный ночной рынок</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>Цзинхун</span>
+                        <i class="fas fa-clock"></i><span>Рекомендуемое время: вечер</span>
+                    </div>
+                    <p class="attraction-description">Один из самых популярных ночных рынков в Сишуанбаньне, предлагающий разнообразные местные закуски, ремесленные изделия и товары с национальным колоритом.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/20231107247274.html" class="attraction-btn">Узнать больше <i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/原始森林.jpg" alt="Древний лес" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Древний лес</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>Национальный заповедник</span>
+                        <i class="fas fa-clock"></i><span>Рекомендуемое время: полный день</span>
+                    </div>
+                    <p class="attraction-description">Первобытный лес находится в глубине гор Сишуанбаньны, сохраняя древнюю экологическую среду, и является идеальным местом для любителей приключений и экотуризма.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/20220506243491.html" class="attraction-btn">Купить билет <i class="fas fa-ticket-alt"></i></a>
+                </div>
+            </div>
+            <div class="attraction-card">
+                <div class="attraction-image-container">
+                    <img src="imgs/大佛寺.jpg" alt="Храм Великого Будды" class="attraction-image">
+                </div>
+                <div class="attraction-content">
+                    <h3 class="attraction-title">Храм Великого Будды</h3>
+                    <div class="attraction-details">
+                        <i class="fas fa-map-marker-alt"></i><span>4 км к юго-востоку от Дали</span>
+                        <i class="fas fa-clock"></i><span>8:30 - 17:30</span>
+                    </div>
+                    <p class="attraction-description">Храм Великого Будды (Чуншэн) – один из важнейших буддийских храмов в Юньнани. Основанный в IX веке, храм известен своей 16-метровой статуей Будды Шакьямуни, пагодой Цяньсюнь и картинной галереей. Это место, где сохраняются древние буддийские традиции и искусство.</p>
+                    <a href="https://www.dahepiao.com/jingqulvyou1/20220506240613.html" class="attraction-btn">Купить билет <i class="fas fa-ticket-alt"></i></a>
+                </div>
+            </div>
+
+         
+        </div>
+    </div>
+
+    <section class="section-padding background-alt">
+        <div class="container">
+            <h2 class="section-title">Планируйте ваше путешествие</h2>
+            <div class="tour-finder-card">
+                <div class="tour-finder-decoration">
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-circle"></div>
+                </div>
+                <form class="tour-finder-form">
+                    <div class="form-group">
+                        <label for="duration-select"><i class="far fa-clock"></i> Длительность поездки</label>
+                        <select id="duration-select" name="duration">
+                            <option value="">Выберите длительность</option>
+                            <option value="1-2">1-2 дня</option>
+                            <option value="3-5">3-5 дней</option>
+                            <option value="6+">6 и более дней</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-select"><i class="fas fa-star"></i> Ваши интересы</label>
+                        <select id="interest-select" name="interests">
+                            <option value="">Выберите интересы</option>
+                            <option value="nature">Природа и животные</option>
+                            <option value="culture">Культура народа дай</option>
+                            <option value="food">Гастрономия</option>
+                            <option value="adventure">Приключения</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-form">Показать туры <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#" class="scroll-to">FAQ</a></li>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p>
+                <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

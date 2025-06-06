@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | Юньнань Тур - планируйте своё путешествие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        /* Стили для страницы регистрации */
+        .register-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            min-height: calc(100vh - 80px - 250px); /* Вычитаем высоту хедера и футера */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .register-wrapper {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .register-image {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('imgs/ruitong-xie-uW9imaRg1h4-unsplash.jpg') no-repeat center center / cover;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: white;
+            position: relative;
+        }
+
+        .register-image h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .register-image p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 280px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .register-image-badge {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background: linear-gradient(45deg, #1a91da, #3498db);
+            color: white;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(26, 145, 218, 0.3);
+        }
+
+        .register-form-container {
+            flex: 1;
+            background: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-title {
+            font-size: 1.8rem;
+            color: #1A2E4C;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5a6f8e;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: #f5f5ff;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #1A2E4C;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #1a91da;
+            box-shadow: 0 0 0 3px rgba(26, 145, 218, 0.2);
+        }
+
+        .form-text {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 6px;
+        }
+
+        .register-btn {
+            background: linear-gradient(45deg, #1a91da, #3498db);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(26, 145, 218, 0.4);
+        }
+
+        .social-register {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-register-title {
+            position: relative;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #5a6f8e;
+        }
+
+        .social-register-title::before,
+        .social-register-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 1px;
+            background-color: #e6e6e6;
+        }
+
+        .social-register-title::before {
+            left: 0;
+        }
+
+        .social-register-title::after {
+            right: 0;
+        }
+
+        .social-register-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-register-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f5f5ff;
+            border: 1px solid #e6e6e6;
+            color: #5a6f8e;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .social-register-btn:hover {
+            background-color: #e9e9fd;
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: #5a6f8e;
+        }
+
+        .login-link a {
+            color: #1a91da;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: #0d82c5;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .register-wrapper {
+                flex-direction: column;
+            }
+
+            .register-image {
+                min-height: 200px;
+                padding: 20px;
+            }
+
+            .register-image-badge {
+                top: 20px;
+                left: 20px;
+            }
+            
+            .register-form-container {
+                padding: 30px 20px;
+            }
+            
+            .social-register-title::before,
+            .social-register-title::after {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="xishuangbanna.html">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html">Журнал</a></li>
+                <li><a href="tickets.html">Билеты</a></li>
+                <li id="authLinks" class="active">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="register-container">
+        <div class="register-wrapper">
+            <div class="register-image">
+                <div class="register-image-badge">Начните приключение</div>
+                <h2>Путешествие начинается здесь</h2>
+                <p>Создайте аккаунт, чтобы составлять маршруты, получать скидки и делиться впечатлениями</p>
+            </div>
+            <div class="register-form-container">
+                <h1 class="register-title">Регистрация</h1>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName">Имя и фамилия</label>
+                        <input type="text" id="fullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Электронная почта</label>
+                        <input type="email" id="registerEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Пароль</label>
+                        <input type="password" id="registerPassword" class="form-control" required>
+                        <div class="form-text">Пароль должен содержать не менее 8 символов</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Подтвердите пароль</label>
+                        <input type="password" id="confirmPassword" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-container" style="display: flex; align-items: flex-start; margin-bottom: 10px;">
+                            <input type="checkbox" id="privacyConsent" required style="margin-top: 4px; margin-right: 10px;">
+                            <label for="privacyConsent" style="font-size: 0.9rem; line-height: 1.4; color: #5a6f8e;">
+                                Я даю согласие на обработку моих персональных данных в соответствии с <a href="#" style="color: #1a91da; text-decoration: none;">Политикой конфиденциальности</a> и Федеральным законом РФ № 152-ФЗ "О персональных данных"
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="register-btn">Создать аккаунт</button>
+                    
+                    <div class="login-link">
+                        Уже есть аккаунт? <a href="login.html">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#" class="scroll-to">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p>
+                <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

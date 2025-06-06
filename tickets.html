@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Билеты | Юньнань Тур - планируйте своё путешествие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        /* Стили для страницы билетов */
+        .tickets-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imgs/ruitong-xie-uW9imaRg1h4-unsplash.jpg') no-repeat center center / cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .tickets-hero .hero-title {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: none;
+            -webkit-text-fill-color: white;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .tickets-hero .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .tickets-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #0984e3, #00cec9);
+            color: white;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(9, 132, 227, 0.3);
+        }
+
+        .tickets-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .tickets-intro {
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-filter-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1A2E4C;
+            font-size: 0.9rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #1A2E4C;
+            background-color: #f5f5ff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            border-color: #0984e3;
+            box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.2);
+            outline: none;
+        }
+
+        .search-btn {
+            background: linear-gradient(45deg, #0984e3, #00cec9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 46px;
+            margin-top: 24px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(9, 132, 227, 0.4);
+        }
+
+        .ticket-tabs {
+            display: flex;
+            border-bottom: 1px solid #e6e6e6;
+            margin-bottom: 30px;
+        }
+
+        .ticket-tab {
+            padding: 12px 20px;
+            font-weight: 600;
+            color: #5a6f8e;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .ticket-tab.active {
+            color: #0984e3;
+        }
+
+        .ticket-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #0984e3, #00cec9);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .ticket-content {
+            padding: 20px;
+        }
+
+        .ticket-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1A2E4C;
+            margin-bottom: 8px;
+        }
+
+        .ticket-location {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #5a6f8e;
+            font-size: 0.9rem;
+        }
+
+        .ticket-location i {
+            color: #0984e3;
+            margin-right: 6px;
+        }
+
+        .ticket-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-feature {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #5a6f8e;
+            background: #f5f5ff;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .ticket-feature i {
+            color: #0984e3;
+            margin-right: 4px;
+            font-size: 0.8rem;
+        }
+
+        .ticket-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e6e6e6;
+        }
+
+        .ticket-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1A2E4C;
+        }
+
+        .ticket-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #5a6f8e;
+        }
+
+        .buy-ticket-btn {
+            background: linear-gradient(45deg, #0984e3, #00cec9);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .buy-ticket-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(9, 132, 227, 0.4);
+        }
+
+        .ticket-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .ticket-pagination-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: #1A2E4C;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .ticket-pagination-link:hover,
+        .ticket-pagination-link.active {
+            background: #0984e3;
+            color: white;
+        }
+
+        .booking-info {
+            background: linear-gradient(to right, #f5f5ff, #e6f4fd);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .booking-info h3 {
+            color: #1A2E4C;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: #0984e3;
+            box-shadow: 0 4px 10px rgba(9, 132, 227, 0.2);
+        }
+
+        .info-content h4 {
+            color: #1A2E4C;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .info-content p {
+            color: #5a6f8e;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .filter-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .ticket-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-btn {
+                margin-top: 10px;
+            }
+            
+            .ticket-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 5px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <circle cx="50" cy="50" r="45" fill="url(#gradLogoHeader)"/>
+                <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="gradLogoHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff7eb3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            Юньнань Тур
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="xishuangbanna.html">Сишуанбаньна</a></li>
+                <li><a href="lijian.html">Лицзян</a></li>
+                <li><a href="dali.html">Дали</a></li>
+                <li><a href="shangrila.html">Шангри-Ла</a></li>
+                <li><a href="map.html">Карта</a></li>
+                <li><a href="news.html">Журнал</a></li>
+                <li><a href="tickets.html" class="active">Билеты</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="btn btn-outline">Войти</a> <a href="register.html" class="btn btn-primary">Регистрация</a>
+                </li>
+                <li id="userWelcome" style="display:none;">
+                    <span>Привет, <span id="usernameDisplay"></span>!</span>
+                    <button id="logoutButton" class="btn btn-outline">Выйти</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="tickets-hero">
+        <div class="container">
+            <div class="tickets-badge">Билеты онлайн</div>
+            <h1 class="hero-title">Билеты на все достопримечательности</h1>
+            <p class="hero-subtitle">Бронируйте билеты онлайн и получайте скидки на посещение популярных мест Юньнани</p>
+        </div>
+    </section>
+
+    <div class="tickets-content">
+        <div class="tickets-intro">
+            <h2 class="section-title">Онлайн-бронирование билетов</h2>
+            <p>Забронируйте билеты заранее и избегайте очередей. Мы предлагаем билеты на все основные достопримечательности провинции Юньнань по официальным ценам без дополнительных сборов.</p>
+        </div>
+        
+        <div class="search-filter-container">
+            <div class="filter-form">
+                <div class="form-group">
+                    <label>Регион</label>
+                    <select id="region-filter">
+                        <option value="all">Все регионы</option>
+                        <option value="xishuangbanna">Сишуанбаньна</option>
+                        <option value="dali">Дали</option>
+                        <option value="lijiang">Лицзян</option>
+                        <option value="shangrila">Шангри-Ла</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Тип билета</label>
+                    <select id="ticket-type-filter">
+                        <option value="all">Все типы</option>
+                        <option value="attraction">Достопримечательности</option>
+                        <option value="show">Шоу и представления</option>
+                        <option value="nature">Природные парки</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Дата посещения</label>
+                    <input type="date" id="visit-date">
+                </div>
+                <div class="form-group">
+                    <label>Цена до (¥)</label>
+                    <select id="price-filter">
+                        <option value="all">Любая</option>
+                        <option value="50">До ¥50</option>
+                        <option value="100">До ¥100</option>
+                        <option value="200">До ¥200</option>
+                        <option value="500">До ¥500</option>
+                    </select>
+                </div>
+                <button class="search-btn">Найти билеты</button>
+            </div>
+        </div>
+
+        <div class="ticket-tabs">
+            <div class="ticket-tab active" data-tab="xishuangbanna">Сишуанбаньна</div>
+            <div class="ticket-tab" data-tab="dali">Дали</div>
+            <div class="ticket-tab" data-tab="lijiang">Лицзян</div>
+            <div class="ticket-tab" data-tab="shangrila">Шангри-Ла</div>
+        </div>
+
+        <!-- Сишуанбаньна билеты -->
+        <div class="ticket-section" id="xishuangbanna-tickets">
+            <h2 class="section-title">Билеты в Сишуанбаньна</h2>
+            
+            <div class="ticket-grid">
+                <!-- Долина диких слонов -->
+                <div class="ticket-card">
+                    <img src="imgs/Yexainggu.jpeg" alt="Долина диких слонов" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Долина диких слонов</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Сишуанбаньна</div>
+                        <p>Долина диких слонов - одна из самых известных достопримечательностей Сишуанбаньны, где можно вблизи понаблюдать за азиатскими дикими слонами.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-calendar-check"></i> Мгновенное подтверждение</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥58 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('yexianggu')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Дайский сад -->
+                <div class="ticket-card">
+                    <img src="imgs/傣族园.jpg" alt="Дайский сад" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Дайский сад</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Сишуанбаньна</div>
+                        <p>Здесь демонстрируется традиционная культура народа дай, включая Фестиваль водных фонарей, Фестиваль водных брызг и другие специальные мероприятия.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-calendar-check"></i> Мгновенное подтверждение</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥58 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('daizuyuan')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Парк Мантин -->
+                <div class="ticket-card">
+                    <img src="imgs/曼听公园.jpg" alt="Парк Мантин" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Парк Мантин</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Сишуанбаньна</div>
+                        <p>Ботанический сад Сишуанбаньна - крупнейшая в Китае база по изучению и демонстрации тропических растений, где представлено богатое разнообразие тропической флоры.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-calendar-check"></i> Мгновенное подтверждение</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥40 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('manting')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дали билеты -->
+        <div class="ticket-section" id="dali-tickets">
+            <h2 class="section-title">Билеты в Дали</h2>
+            
+            <div class="ticket-grid">
+                <!-- Гора Цаншань -->
+                <div class="ticket-card">
+                    <img src="imgs/苍山照片.jpg" alt="Гора Цаншань" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Гора Цаншань</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Дали</div>
+                        <p>Гора Цаншань - главная вершина в южной части горного хребта Юньлин, состоящего из девятнадцати пиков с севера на юг. Величественные пики создают потрясающий контраст с прекрасными пейзажами озера Эрхай.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-calendar-check"></i> Мгновенное подтверждение</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥110 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('cangshan')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Дополнительные билеты в Дали можно добавить здесь -->
+            </div>
+        </div>
+
+        <!-- Лицзян билеты -->
+        <div class="ticket-section" id="lijiang-tickets">
+            <h2 class="section-title">Билеты в Лицзян</h2>
+            
+            <div class="ticket-grid">
+                <!-- Гора Юйлунсюэшань -->
+                <div class="ticket-card">
+                    <img src="imgs/玉龙雪山.jpg" alt="Гора Юйлунсюэшань" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Гора Юйлунсюэшань</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Лицзян</div>
+                        <p>Гора Юйлунсюэшань — самая южная снежная гора в Китае, привлекающая туристов своими великолепными ледниками и богатой флорой и фауной.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-calendar-check"></i> Мгновенное подтверждение</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥108 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('yulongxueshan')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Шоу "Вечная любовь Лицзяна" -->
+                <div class="ticket-card">
+                    <img src="imgs/丽江千古情.jpg" alt="Шоу Вечная любовь Лицзяна" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Шоу "Вечная любовь Лицзяна"</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Лицзян</div>
+                        <p>Шоу "Вечная любовь Лицзяна" — это грандиозное представление, рассказывающее о богатой истории и культуре Лицзяна.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 90 минут</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-child"></i> Дети до 1,2м бесплатно</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥280 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('lijiangqianguqing')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Шангри-Ла билеты -->
+        <div class="ticket-section" id="shangrila-tickets">
+            <h2 class="section-title">Билеты в Шангри-Ла</h2>
+            
+            <div class="ticket-grid">
+                <!-- Национальный парк Пудацзо -->
+                <div class="ticket-card">
+                    <img src="imgs/普达措.jpg" alt="Национальный парк Пудацзо" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Национальный парк Пудацзо</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Шангри-Ла</div>
+                        <p>Национальный парк Пудацзо славится своими великолепными природными пейзажами и богатым разнообразием дикой флоры и фауны.</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-calendar-check"></i> Мгновенное подтверждение</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥138 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('pudacuo')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Монастырь Сунцзанлин -->
+                <div class="ticket-card">
+                    <img src="imgs/颂赞林寺.jpg" alt="Монастырь Сунцзанлин" class="ticket-image">
+                    <div class="ticket-content">
+                        <h3 class="ticket-title">Монастырь Сунцзанлин</h3>
+                        <div class="ticket-location"><i class="fas fa-map-marker-alt"></i> Шангри-Ла</div>
+                        <p>Монастырь Сунцзанлин — крупнейший тибетский буддийский храм в провинции Юньнань, известный как "Малый Потала".</p>
+                        
+                        <div class="ticket-features">
+                            <span class="ticket-feature"><i class="fas fa-clock"></i> 1 день</span>
+                            <span class="ticket-feature"><i class="fas fa-qrcode"></i> Электронный билет</span>
+                            <span class="ticket-feature"><i class="fas fa-info-circle"></i> Льготные билеты на месте</span>
+                        </div>
+                        
+                        <div class="ticket-price-row">
+                            <div class="ticket-price">¥81 <span>/ чел.</span></div>
+                            <button class="buy-ticket-btn" onclick="purchaseTicket('songzan')">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция с информацией о бронировании -->
+        <div class="booking-info">
+            <h3>Информация о бронировании билетов</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Электронные билеты</h4>
+                        <p>После оплаты билеты будут отправлены на вашу электронную почту или в СМС</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Свободная дата</h4>
+                        <p>Большинство билетов действительны на любую дату в течение сезона</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Отмена и возврат</h4>
+                        <p>Правила отмены различаются для разных объектов. Проверяйте условия перед покупкой</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Безопасная оплата</h4>
+                        <p>Все платежи защищены современными методами шифрования и безопасны</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Скрываем устаревшие элементы -->
+        <div class="sidebar" style="display:none;">
+            <h2>目的地</h2>
+            <ul>
+                <li onclick="loadDestination('xishuangbanna')">西双版纳</li>
+                <li onclick="loadDestination('shangrila')">香格里拉</li>
+            </ul>
+        </div>
+        <div class="main-content" style="display:none;">
+            <!-- 西双版纳 -->
+            <section id="content" class="destination">
+                <h1>Исследуйте Сишуанбаньну</h1>
+
+                 <!-- 景点列表 -->
+            <div class="spot">
+                <div class="spot-header">
+                    <h2>Долина диких слонов</h2>
+                </div>
+                <div class="spot-image">
+                    <img src="imgs/Yexainggu.jpeg" alt="野象谷">
+                </div>
+                <div class="spot-description">
+                    <p>Долина диких слонов - одна из самых известных достопримечательностей Сишуанбаньны, где можно
+                     вблизи понаблюдать за азиатскими дикими слонами.</p>
+                </div>
+                <div class="ticket-options">
+                    <label><input type="radio" name="ticket_yexianggu" value="adult"> взрослый билет（¥58）</label>
+                    <label><input type="radio" name="ticket_yexianggu" value="child"> детский билет（¥30）</label>
+                    <label><input type="radio" name="ticket_yexianggu" value="discount"> билет для родителей и детей（¥88）</label>
+                </div>
+                <button class="buy-ticket" onclick="purchaseTicket('yexianggu')">Купить билет</button>
+            </div>
+
+            <div class="spot">
+                <div class="spot-header">
+                    <h2>Дайский сад</h2>
+                </div>
+                <div class="spot-image">
+                    <img src="imgs/傣族园.jpg"  alt="Дайский сад" >
+                </div>
+                <div class="spot-description">
+                    <p>Здесь демонстрируется традиционная культура народа дай, включая Фестиваль водных фонарей, Фестиваль водных брызг и другие специальные мероприятия.</p>
+                </div>
+                <div class="ticket-options">
+                    <label><input type="radio" name="ticket_daizuyuan" value="adult"> взрослый билет（¥58）</label>
+                    <label><input type="radio" name="ticket_daizuyuan" value="child"> детский билет（¥20）</label>
+                </div>
+                <button class="buy-ticket" onclick="purchaseTicket('daizuyuan')">Купить билет</button>
+            </div>
+
+            <div class="spot">
+                <div class="spot-header">
+                    <h2>Парк Мантин</h2>
+                </div>
+                <div class="spot-image">
+                    <img src="imgs/曼听公园.jpg" alt="Парк Мантин">
+                </div>
+                <div class="spot-description">
+                 p>Ботанический сад Сишуанбаньна Чжунке - крупнейшая в Китае база по изучению и демонстрации тропических растений, где представлено
+                  богатое разнообразие тропических растений.</p>
+                </div>
+                <div class="ticket-options">
+                    <label><input type="radio" name="ticket_manting" value="adult"> взрослый билет（¥40）</label>
+                    <label><input type="radio" name="ticket_manting" value="child"> билет на две персоны（¥80）</label>
+                    <label><input type="radio" name="ticket_manting" value="discount"> билет на три персоны（¥120）</label>
+                </div>
+                <button class="buy-ticket" onclick="purchaseTicket('manting')">Купить билет</button>
+            </div>
+    </section>
+
+    <section id="content" class="destination">
+        <h1>Исследуйте Дали</h1>
+
+         <!-- 景点列表 -->
+        <div class="spot">
+        <div class="spot-header">
+            <h2>Гора Каншань в Дали</h2>
+        </div>
+        <div class="spot-image">
+            <img src="imgs/苍山照片.jpg" alt="Гора Каншань в Дали" style="width: 750px; height: 400px;">
+        </div>
+        <div class="spot-description">
+            <p>Гора Каншань - главная вершина в южной части горного хребта Юньлин, состоящего из девятнадцати пиков с севера на юг, начиная с Эрюань Дэнчуань на севере и заканчивая Сяньгуань Тяньшэнцяо на юге. Девятнадцать
+            вершин горы Каншань величественны и составляют сильный контраст с прекрасными пейзажами Эрхайского моря.</p>
+        </div>
+        <div class="ticket-options">
+            <label><input type="radio" name="ticket_cangshan" value="adult"> взрослый билет（¥110）</label>
+            <label><input type="radio" name="ticket_cangshan" value="child"> детский билет（¥40）</label>
+        </div>
+        <button class="buy-ticket" onclick="purchaseTicket('cangshan')">Купить билет</button>
+        </div>
+    </section> 
+
+    <!-- 丽江景点购票 -->
+    <section id="content" class="destination">
+        <h1>Исследуйте Лицзян</h1>
+         <!-- 景点列表 -->
+        <div class="spot">
+        <div class="spot-header">
+            <h2>Гора Юйлунсюэшань</h2>
+        </div>
+        <div class="spot-image">
+            <img src="imgs/玉龙雪山.jpg" alt="Гора Каншань в Дали" style="width: 750px; height: 400px;">
+        </div>
+        <div class="spot-description">
+            <p>Гора Юйлунсюэшань — самая южная снежная гора в Китае, привлекающая туристов своими 
+                великолепными ледниками и богатой флорой и фауной.</p>
+        </div>
+        <div class="ticket-options">
+            <label><input type="radio" name="ticket_yulongxueshan" value="adult"> взрослый билет（¥108）</label>
+        </div>
+        <button class="buy-ticket" onclick="purchaseTicket('yulongxueshan')">Купить билет</button>
+        </div>
+
+        <div class="spot">
+            <div class="spot-header">
+                <h2>Шоу "Вечная любовь Лицзяна"</h2>
+            </div>
+            <div class="spot-image">
+                <img src="imgs/丽江千古情.jpg" data-src="imgs/lijiang_eternal_love.jpg" alt="Шоу Вечная любовь Лицзяна" class="lazyload">
+            </div>
+            <div class="spot-description">
+                <p>Шоу "Вечная любовь Лицзяна" — это грандиозное представление, рассказывающее о 
+                    богатой истории и культуре Лицзяна.(Дети от 1,2 метра до 6 лет; бесплатно для пожилых людей старше 70 лет)</p>
+            </div>
+            <div class="ticket-options">
+                <label> <input input type="radio" name="ticket_lijiangqianguqing" value="adult"> взрослый билет（¥280）</label>
+                <label><input type="radio" name="ticket_lijiangqianguqing" value="vip"> Билет для взрослого с местом класса люкс(¥480)</label>
+                <label><input type="radio" name="ticket_lijiangqianguqing" value="discount"> Льготный билет (родитель-ребенок)(¥540)</label>
+                
+            </div>
+            <button class="buy-ticket" onclick="purchaseTicket('lijiangqianguqing')">Купить билет</button>
+        </div>
+    </section> 
+    <!-- 香格里拉 -->
+    <section id="content" class="destination">
+        <h1>Исследуйте Шангри-Ла</h1>
+         <!-- 景点列表 -->
+        <div class="spot">
+        <div class="spot-header">
+            <h2>Национальный парк Пудацзо</h2>
+        </div>
+        <div class="spot-image">
+            <img src="imgs/普达措.jpg" alt="Гора Каншань в Дали" style="width: 750px; height: 400px;">
+        </div>
+        <div class="spot-description">
+            <p>Национальный парк Пудацзо славится своими великолепными природными пейзажами 
+                и богатым разнообразием дикой флоры и фауны.</p>
+        </div>
+        <div class="ticket-options">
+            <label><input type="radio" name="ticket_pudacuo" value="adult"> взрослый билет（¥138）</label>
+        </div>
+        <button class="buy-ticket" onclick="purchaseTicket('pudacuo')">Купить билет</button>
+        </div>
+
+        <div class="spot">
+            <div class="spot-header">
+                <h2>Монастырь Сунцзанлин</h2>
+            </div>
+            <div class="spot-image">
+                <img src="imgs/颂赞林寺.jpg" data-src="imgs/lijiang_eternal_love.jpg" alt="Шоу Вечная любовь Лицзяна" class="lazyload" style="width: 750px; height: 400px;">
+            </div>
+            <div class="spot-description">
+                <p>Монастырь Сунцзанлин — крупнейший тибетский буддийский храм в провинции Юньнань, известный 
+                    как "Малый Потала".(Студенческие и льготные билеты необходимо приобретать в месте проведения мероприятия.)</p>
+            </div>
+            <div class="ticket-options">
+                <label> <input input type="radio" name="ticket_songzan" value="adult"> взрослый билет（¥81）</label>
+
+                
+            </div>
+            <button class="buy-ticket" onclick="purchaseTicket('songzan')">Купить билет</button>
+        </div>
+    </section> 
+    </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <a href="index.html" class="logo">
+                     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <circle cx="50" cy="50" r="45" fill="url(#gradLogoFooter)"/>
+                        <path d="M30 65Q38 52 50 60Q62 68 70 55M40 45Q50 35 60 48" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="gradLogoFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Юньнань тур</span>
+                </a>
+                <p class="footer-tagline">Открываем для вас сердце Китая – провинцию Юньнань. Незабываемые впечатления и аутентичные маршруты.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Быстрые ссылки</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="map.html">Карта маршрутов</a></li>
+                    <li><a href="news.html">Журнал путешествий</a></li>
+                    <li><a href="#" class="scroll-to">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Свяжитесь с нами</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@yunnan-adventure.cn">info@yunnan-adventure.cn</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+860000000000">+86 (000) 000-00-00</a></p>
+                <div class="social-icons">
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 Юньнань тур. Все права защищены. Путешествуйте с вдохновением!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция переключения вкладок
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.ticket-tab');
+            const ticketSections = document.querySelectorAll('.ticket-section');
+            
+            // Изначально показываем только секцию Сишуанбаньна
+            ticketSections.forEach(section => {
+                if (section.id !== 'xishuangbanna-tickets') {
+                    section.style.display = 'none';
+                }
+            });
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Удаляем активный класс со всех вкладок
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Добавляем активный класс к выбранной вкладке
+                    this.classList.add('active');
+                    
+                    // Скрываем все секции с билетами
+                    ticketSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Показываем выбранную секцию
+                    const targetTab = this.getAttribute('data-tab');
+                    document.getElementById(targetTab + '-tickets').style.display = 'block';
+                });
+            });
+
+            // Функция для фильтрации билетов
+            document.querySelector('.search-btn').addEventListener('click', function() {
+                const regionFilter = document.getElementById('region-filter').value;
+                
+                if (regionFilter !== 'all') {
+                    // Переключаемся на соответствующую вкладку
+                    tabs.forEach(tab => {
+                        if (tab.getAttribute('data-tab') === regionFilter) {
+                            tab.click();
+                        }
+                    });
+                }
+            });
+        });
+
+        function purchaseTicket(spotName) {
+            let ticketType = document.querySelector(`input[name="ticket_${spotName}"]:checked`);
+            
+            if (!ticketType) {
+                // Для новой версии страницы (без радиокнопок)
+                let url = "";
+                const ticketLinks = {
+                    "yexianggu": "https://www.dahepiao.com/jq_order?aid=239181&pid=1183192&tplprice=58&item_id=48905413&item_name=ctrip",
+                    "daizuyuan": "https://www.dahepiao.com/jq_order?aid=73592&pid=1173245&tplprice=20&item_id=88058044&item_name=ctrip",
+                    "manting": "https://www.dahepiao.com/jq_order?aid=73431&pid=1146248&tplprice=40&item_id=33183545&item_name=ctrip",
+                    "cangshan": "https://www.dahepiao.com/jq_order?aid=245730&pid=1148349&tplprice=110&item_id=24844804&item_name=ctrip",
+                    "yulongxueshan": "https://www.dahepiao.com/jq_order?aid=71371&pid=1190612&tplprice=108&item_id=62045576&item_name=ctrip",
+                    "lijiangqianguqing": "https://www.dahepiao.com/jq_order?aid=102795&pid=513510&tplprice=280&item_id=&item_name=",
+                    "pudacuo": "https://www.dahepiao.com/jq_order?aid=221734&pid=670739&tplprice=138&item_id=56412955&item_name=ctrip",
+                    "songzan": "https://www.dahepiao.com/jq_order?aid=248989&pid=1123628&tplprice=81&item_id=60072851&item_name=ctrip"
+                };
+                
+                if (ticketLinks[spotName]) {
+                    url = ticketLinks[spotName];
+                    window.location.href = url;
+                    return;
+                }
+                
+                // Для старой версии страницы, если не нашли билет выше
+                alert("Пожалуйста, выберите тип билета!");
+                return;
+            }
+
+            // Старый код для обработки выбора радиокнопок
+            let ticketValue = ticketType.value;
+            let url = "";
+
+            // 购票链接映射
+            const ticketLinks = {
+                "yexianggu": {
+                    "adult": "https://www.dahepiao.com/jq_order?aid=239181&pid=1183192&tplprice=58&item_id=48905413&item_name=ctrip",
+                    "child": "https://www.dahepiao.com/jq_order?aid=239181&pid=1183206&tplprice=30&item_id=56358964&item_name=ctrip",
+                    "discount": "https://www.dahepiao.com/jq_order?aid=239181&pid=1183207&tplprice=88&item_id=61480458&item_name=ctrip"
+                },
+                "daizuyuan": {
+                    "adult": "https://www.dahepiao.com/jq_order?aid=73592&pid=1173245&tplprice=20&item_id=88058044&item_name=ctrip",
+                    "child": "https://www.dahepiao.com/jq_order?aid=73592&pid=1173245&tplprice=20&item_id=88058044&item_name=ctrip",
+
+                },
+                "manting": {
+                    "adult": "https://www.dahepiao.com/jq_order?aid=73431&pid=1146248&tplprice=40&item_id=33183545&item_name=ctrip",
+                    "child": "https://www.dahepiao.com/jingqulvyou1/forest_child.html",
+                    "discount": "https://www.dahepiao.com/jingqulvyou1/forest_discount.html"
+                },
+                "cangshan": {
+                    "adult": "https://www.dahepiao.com/jq_order?aid=245730&pid=1148349&tplprice=110&item_id=24844804&item_name=ctrip",
+                    "child": "https://www.dahepiao.com/jq_order?aid=245730&pid=1001160&tplprice=40&item_id=31710886&item_name=ctrip"
+               },
+               "yulongxueshan": {
+                "adult" : "https://www.dahepiao.com/jq_order?aid=71371&pid=1190612&tplprice=108&item_id=62045576&item_name=ctrip"
+               },
+               "lijiangqianguqing": {
+                "adult" : "https://www.dahepiao.com/jq_order?aid=102795&pid=513510&tplprice=280&item_id=&item_name=",
+                "discount" :"https://www.dahepiao.com/jq_order?aid=102795&pid=383259&tplprice=540&item_id=&item_name=",
+                "vip" :"https://www.dahepiao.com/jq_order?aid=102795&pid=513732&tplprice=480&item_id=&item_name="
+               },
+               "pudacuo": {
+                "adult" :"https://www.dahepiao.com/jq_order?aid=221734&pid=670739&tplprice=138&item_id=56412955&item_name=ctrip",
+               },
+               "songzan": {
+                "adult" :"https://www.dahepiao.com/jq_order?aid=248989&pid=1123628&tplprice=81&item_id=60072851&item_name=ctrip"
+               }
+            };
+
+            if (ticketLinks[spotName] && ticketLinks[spotName][ticketValue]) {
+                url = ticketLinks[spotName][ticketValue];
+            } else {
+                alert("Ссылка на билет не найдена！");
+                return;
+            }
+
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
+
+
+
